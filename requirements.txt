@@ -1,0 +1,5 @@
+streamlit
+feedparser
+nltk
+pandas
+scikit-learn
