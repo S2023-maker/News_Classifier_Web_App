@@ -1,0 +1,7 @@
+bbc_model.pkl
+bbc_tfidf.pkl
+bbc_acc.pkl
+bbc_meta.pkl
+myenv/
+__pycache__/
+*.pyc
