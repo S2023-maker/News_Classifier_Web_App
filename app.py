@@ -430,25 +430,31 @@ if classify_btn:
         sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
         top_conf    = scores[pred]
 
-        # Result card
-        st.markdown(f"""
-        <div class="result-card">
-            <div class="result-icon">{ICONS[pred]}</div>
-            <div class="result-category">{pred}</div>
-            <span class="result-tag">✓ {top_conf:.1f}% confidence</span>
+        # Build confidence bars HTML separately (avoids nested f-string escaping bug)
+        bars_html = ""
+        for cat, score in sorted_scores:
+            color = BAR_COLORS.get(cat, "#888")
+            bars_html += (
+                f'<div class="conf-row">'
+                f'  <div class="conf-cat">{ICONS[cat]} {cat}</div>'
+                f'  <div class="conf-bar-wrap">'
+                f'    <div class="conf-bar" style="width:{score:.1f}%;background:{color};"></div>'
+                f'  </div>'
+                f'  <div class="conf-pct">{score:.1f}%</div>'
+                f'</div>'
+            )
 
-            <div class="conf-label">Confidence breakdown</div>
-            {''.join(f"""
-            <div class="conf-row">
-                <div class="conf-cat">{ICONS[cat]} {cat}</div>
-                <div class="conf-bar-wrap">
-                    <div class="conf-bar" style="width:{score:.1f}%;background:{BAR_COLORS.get(cat,'#888')};"></div>
-                </div>
-                <div class="conf-pct">{score:.1f}%</div>
-            </div>
-            """ for cat, score in sorted_scores)}
-        </div>
-        """, unsafe_allow_html=True)
+        # Result card
+        result_html = (
+            f'<div class="result-card">'
+            f'  <div class="result-icon">{ICONS[pred]}</div>'
+            f'  <div class="result-category">{pred}</div>'
+            f'  <span class="result-tag">✓ {top_conf:.1f}% confidence</span>'
+            f'  <div class="conf-label" style="margin-top:20px;">Confidence breakdown</div>'
+            f'  {bars_html}'
+            f'</div>'
+        )
+        st.markdown(result_html, unsafe_allow_html=True)
 
 # ── Controls ──────────────────────────────────────────────────────────────────
 st.markdown("<br>", unsafe_allow_html=True)
