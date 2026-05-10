@@ -6,6 +6,12 @@ A machine learning web app that classifies any news headline or paragraph into o
 
 ---
 
+## Screenshots
+<img width="481" height="762" alt="image" src="https://github.com/user-attachments/assets/00427e06-7ad6-4395-9f1e-4d4fcb56132f" />
+
+## Deployment link
+https://newsclassifierwebapp-kdzgqkmsbjovkeeqgnhccb.streamlit.app/
+
 ## 1. Project Overview
 
 This project demonstrates a complete end-to-end NLP pipeline:
@@ -254,5 +260,10 @@ https://YOUR_USERNAME-bbc-classifier-app-xxxx.streamlit.app
 - Schedule automatic retraining with GitHub Actions
 
 ---
+
+## Author
+
+**Shreya**  
+Aspiring Data Scientist | Machine Learning Enthusiast | Python Developer
 
 *Built with ❤️ using Python · scikit-learn · NLTK · Streamlit*
